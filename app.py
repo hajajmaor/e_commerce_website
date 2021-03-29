@@ -1,8 +1,13 @@
+from api.product_api import product_api
 from flask import Flask
 from flask_mongoengine import MongoEngine
-# from .models.product import Product
-app = Flask(__name__)
+from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app)
+# url_prefix='/api/product'
+
+app.register_blueprint(product_api)
 app.config['MONGODB_SETTINGS'] = {
     'db': 'e_comm',
     'host': 'localhost',
@@ -10,5 +15,11 @@ app.config['MONGODB_SETTINGS'] = {
 }
 db = MongoEngine(app)
 
+
+@app.route("/")
+def hello_world():
+    return "hello world"
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

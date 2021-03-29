@@ -1,8 +1,9 @@
-from app import app
+# from ..app import app
 from flask_mongoengine import MongoEngine
 
+
 # from mongoengine import *
-db = MongoEngine(app)
+db = MongoEngine()
 
 
 class Product(db.Document):

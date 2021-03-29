@@ -134,3 +134,4 @@ dmypy.json
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/inspectionProfiles/Project_Default.xml
 .vscode/settings.json
+.idea/vcs.xml
