@@ -1,5 +1,6 @@
 flask~=1.1.2
-mongoengine
-flask-mongoengine
+# mongoengine
+# flask-mongoengine
 gunicorn
 flask_cors
+Flask-PyMongo
