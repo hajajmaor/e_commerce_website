@@ -65,7 +65,8 @@ class _ProductEditorState extends State<ProductEditor> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
+      width: 350,
+      padding: const EdgeInsets.all(16),
       color: Colors.grey[300],
       child: SingleChildScrollView(
         child: Column(
@@ -96,7 +97,13 @@ class _ProductEditorState extends State<ProductEditor> {
                         price: double.tryParse(_priceController.text),
                         title: _titleController.text,
                       );
-                      context.read(productsProvider).updateProduct(_newProduct);
+                      try {
+                        context
+                            .read(productsProvider)
+                            .updateProduct(_newProduct);
+                      } catch (e) {
+                        print(e);
+                      }
                     }
                   },
                   child: const Text('update'),

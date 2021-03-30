@@ -46,7 +46,7 @@ class ProductsProvider extends ChangeNotifier {
   Future<void> updateProduct(ProductModel product) async {
     final body = product.toMapAll();
     final _url = dServerUrl.replace(path: 'api/product/update');
-    await http.put(
+    await http.post(
       _url,
       body: body,
     );
