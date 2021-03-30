@@ -6,7 +6,6 @@ CORS(app)
 
 from api.product_api import product_api
 from api.cart_api import cart_api
-
 app.register_blueprint(product_api)
 app.register_blueprint(cart_api)
 

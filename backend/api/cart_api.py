@@ -31,9 +31,16 @@ def update():
         return jsonify({'error': 'object id not provided'}), 404
     try:
         oid = args.get('oid')
-        return cart.add_to_cart(oid)
+        # return Response(dumps(cart.add_to_cart(oid).acknowledged,
+        #                       default=json_util.default),
+        #                 200, mimetype='application/json')
+        if cart.add_to_cart(oid).acknowledged:
+            return jsonify(True), 200
+        else: return jsonify(False), 400
+    except ValueError as e:
+        return jsonify(e.args), 400
     except Exception as e:
-        pass
+        return jsonify({'error': e.args}), 400
 
 
 @cart_api.route('/remove_from_cart', methods=['delete', 'purge'])
