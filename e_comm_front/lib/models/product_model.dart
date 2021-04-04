@@ -73,7 +73,7 @@ class ProductModel {
   Map<String, dynamic> toMapAll() {
     return {
       'title': title,
-      'price': price,
+      'price': price.toString(),
       'description': description,
       'imageUrl': imageUrl,
       'oid': objectId,

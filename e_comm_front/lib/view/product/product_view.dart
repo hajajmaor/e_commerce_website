@@ -28,7 +28,10 @@ class ProductView extends StatelessWidget {
                 fit: BoxFit.fill,
                 imageUrl: model.imageUrl,
                 placeholder: (_, __) => const CircularProgressIndicator(),
-                errorWidget: (_, __, ___) => const Icon(Icons.error),
+                errorWidget: (_, __, ___) => const FlutterLogo(
+                  style: FlutterLogoStyle.stacked,
+                  size: 50,
+                ),
               ),
             ),
             Padding(

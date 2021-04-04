@@ -33,7 +33,8 @@ class Product:
 
     @staticmethod
     def find_and_update(oid: str, data: dict):
-        _product_col.find_one_and_update({'_id': ObjectId(oid)}, data)
+        _product_col.find_one_and_update(
+            {'_id': ObjectId(oid)}, {"$set": data})
 
     @staticmethod
     def find_and_delete(oid: str):

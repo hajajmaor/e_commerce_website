@@ -45,10 +45,12 @@ class ProductsProvider extends ChangeNotifier {
 
   Future<void> updateProduct(ProductModel product) async {
     final body = product.toMapAll();
-    final _url = dServerUrl.replace(path: 'api/product/update');
-    await http.post(
+    final _url =
+        dServerUrl.replace(path: 'api/product/update', queryParameters: body);
+    final result = await http.post(
       _url,
-      body: body,
+      // headers: {"Access-Control-Allow-Origin": "*"},
+      // body: body,
     );
     _getData();
   }

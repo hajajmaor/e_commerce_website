@@ -101,6 +101,7 @@ class _ProductEditorState extends State<ProductEditor> {
                         context
                             .read(productsProvider)
                             .updateProduct(_newProduct);
+                        Navigator.pop(context);
                       } catch (e) {
                         print(e);
                       }

@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.4"
 services:
   database:
     image: mongo
@@ -24,12 +24,12 @@ services:
     #   - database
     command: gunicorn -b 0.0.0.0:5000 wsgi:app
 
-  # frontend:
-  #   build: ./e_comm_front
-  #   ports:
-  #     - 80:8000
-  #   links:
-  #     - backend
+  frontend:
+    build: ./e_comm_front
+    ports:
+      - 80:8000
+    links:
+      - backend
 
 volumes:
   mongo-data:

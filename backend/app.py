@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 from api.product_api import product_api
 from api.cart_api import cart_api

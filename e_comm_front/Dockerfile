@@ -10,4 +10,5 @@ FROM python:slim-buster
 COPY --from=builder /app/build/web /app
 WORKDIR /app
 EXPOSE 8000
+RUN echo running in http://localhost/
 CMD ["python3","-m","http.server"]
