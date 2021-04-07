@@ -14,3 +14,14 @@ All in a single compose ready to run.
 * 3rd part of the assignment not ready.
 
 #### Work in progress :)
+
+
+### 07/04/2021
+
+In order to use some regex, I searched for [pub.dev](https://pub.dev/) for some predefined regex.
+https://pub.dev/packages/regexpattern - great package, not up to date...
+
+Half an hout later:
+https://github.com/agungnursatria/regexpattern/pull/4
+
+add sound null safety
