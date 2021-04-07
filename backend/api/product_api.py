@@ -37,7 +37,7 @@ def remove():
     args.update(request.form.to_dict())
     # oid = args.pop('oid')
     result = Product.find_and_delete(args.get('oid'))
-    return jsonify(result)
+    return jsonify(result.product)
 
 
 @product_api.route('/create', methods=['POST'])
@@ -55,7 +55,7 @@ def create():
         )
         result = _item.create_new(_item.__dict__)
 
-        return Response(dumps(result.__dict__,
+        return Response(dumps(result.inserted_id,
                               default=json_util.default),
                         200,
                         mimetype='application/json'
