@@ -263,6 +263,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.1"
+  regexpattern:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "2692465dabc8e631e42ff7430fe80d2b5f0862a7"
+      url: "https://github.com/hajajmaor/regexpattern.git"
+    source: git
+    version: "2.0.0"
   riverpod:
     dependency: "direct main"
     description:
