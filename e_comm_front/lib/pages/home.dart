@@ -1,3 +1,4 @@
+import 'package:e_comm_front/view/cart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,6 +15,8 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final List<ProductModel> _products = watch(productsProvider).getCurrentCart;
     return Scaffold(
+      endDrawerEnableOpenDragGesture: false,
+      endDrawer: CartView(),
       appBar: getAppBar(context),
       body: Center(
         child: Wrap(

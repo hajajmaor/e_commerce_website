@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request, Response
 from flask_cors import CORS
+from pymongo.results import DeleteResult
 
 from models.product import Product
 from models.cart import Cart
@@ -36,7 +37,8 @@ def update():
         #                 200, mimetype='application/json')
         if cart.add_to_cart(oid).acknowledged:
             return jsonify(True), 200
-        else: return jsonify(False), 400
+        else:
+            return jsonify(False), 400
     except ValueError as e:
         return jsonify(e.args), 400
     except Exception as e:
@@ -49,12 +51,15 @@ def remove():
     args.update(request.form.to_dict())
     # oid = args.pop('oid')
     result = cart.delete_from_cart(args.get('oid'))
-    return jsonify(result)
+    if result is DeleteResult:
+        return jsonify(result.deleted_count)
+
+    return jsonify(False), 404
 
 
 @cart_api.route('/buy', methods=['POST', 'get'])
 def buy():
-    return Response(dumps(cart.save_to_db(), default=json_util.default),
+    return Response(dumps(cart.save_to_db().inserted_ids, default=json_util.default),
                     200, mimetype='application/json')
 
 

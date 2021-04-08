@@ -43,7 +43,9 @@ class CartProvider extends ChangeNotifier {
     _getData();
   }
 
+  /// get current list of products
   List<ProductModel> get getCurrentCart => _products;
+
   void refresh() {
     _getData();
   }
