@@ -1,6 +1,6 @@
 import 'package:e_comm_front/main.dart';
 import 'package:e_comm_front/models/product_model.dart';
-import 'package:e_comm_front/view/nav_bar.dart';
+import 'package:e_comm_front/view/app_bar.dart';
 import 'package:e_comm_front/view/product/product_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,9 +14,11 @@ class AdminPage extends ConsumerWidget {
     final proProvider = watch(productsProvider);
     final List<ProductModel> _products = proProvider.getCurrentCart;
     return Scaffold(
-      appBar: AppBar(
-        actions: [NavBar()],
-      ),
+      appBar: getAppBar(context),
+      // appBar: ApplicationAppBar(),
+      // appBar: AppBar(
+      //   actions: [NavBar()],
+      // ),
       body: Center(
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,

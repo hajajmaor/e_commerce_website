@@ -156,7 +156,7 @@ class _ProductEditorState extends State<ProductEditor> {
                                 .updateProduct(_newProduct);
                             Navigator.pop(context);
                           } catch (e) {
-                            print(e);
+                            // print(e);
                           }
                         }
 
@@ -174,7 +174,7 @@ class _ProductEditorState extends State<ProductEditor> {
                                 .createNewProduct(newProduct);
                             Navigator.pop(context);
                           } catch (e) {
-                            print(e);
+                            // print(e);
                           }
                         }
                       }
