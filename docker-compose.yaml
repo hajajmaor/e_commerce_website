@@ -4,15 +4,13 @@ services:
     image: mongo
     ports:
       - 27017:27017
-    # environment:
-    #   MONGO_INITDB_ROOT_USERNAME: root
-    #   MONGO_INITDB_ROOT_PASSWORD: Secret
     volumes:
       - mongo-data:/data/db
       - mongo-configdb:/data/configdb
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-
-    depends_on: [backend]
+    links:
+      - backend
+    # depends_on: [backend]
 
   backend:
     build: ./backend
@@ -20,8 +18,7 @@ services:
       - 5000:5000
     volumes:
       - ./backend:/app
-    # links:
-    #   - database
+
     command: gunicorn -b 0.0.0.0:5000 wsgi:app
 
   frontend:

@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request, Response
 from flask_cors import CORS
+from pymongo.results import DeleteResult
 from models.product import Product
 from bson import json_util
 from json import dumps
@@ -36,8 +37,8 @@ def remove():
     args: dict = request.args.to_dict()
     args.update(request.form.to_dict())
     # oid = args.pop('oid')
-    result = Product.find_and_delete(args.get('oid'))
-    return jsonify(result.product)
+    result: DeleteResult = Product.find_and_delete(args.get('oid'))
+    return jsonify(result.acknowledged)
 
 
 @product_api.route('/create', methods=['POST'])
