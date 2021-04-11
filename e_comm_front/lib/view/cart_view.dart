@@ -1,12 +1,28 @@
-import 'package:e_comm_front/main.dart';
-import 'package:e_comm_front/view/product/product_in_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:e_comm_front/main.dart' show cartProvider;
+import 'package:e_comm_front/models/product_model.dart' show ProductModel;
+import 'package:e_comm_front/view/product/product_in_cart.dart'
+    show ProductInCart;
 
 class CartView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
+    /// ref to the state of the cart
     final cartData = watch(cartProvider);
+
+    /// Map the items to show in groups
+    final Map<ProductModel, int> mapProductCoud = {};
+
+    for (final element in cartData.getCurrentCart) {
+      if (!mapProductCoud.containsKey(element)) {
+        mapProductCoud[element] = 1;
+      } else {
+        mapProductCoud[element] = mapProductCoud[element]! + 1;
+      }
+    }
+
     return Container(
       color: Theme.of(context).cardColor,
       height: MediaQuery.of(context).size.height,
@@ -21,14 +37,12 @@ class CartView extends ConsumerWidget {
             height: 20,
           ),
           Expanded(
-            child: ListView(
-              children: cartData.getCurrentCart
-                  .map(
-                    (e) => ProductInCart(
-                      model: e,
-                    ),
-                  )
-                  .toList(),
+            child: ListView.builder(
+              itemCount: mapProductCoud.keys.length,
+              itemBuilder: (_, index) => ProductInCart(
+                model: mapProductCoud.keys.elementAt(index),
+                quantity: mapProductCoud[mapProductCoud.keys.elementAt(index)]!,
+              ),
             ),
           ),
           Container(

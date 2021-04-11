@@ -31,7 +31,7 @@ class _CartIconState extends State<CartIcon> with TickerProviderStateMixin {
         Scaffold.of(context).openEndDrawer();
       },
       child: FadeTransition(
-        opacity: _animationController,
+        opacity: _animation,
         child: Stack(
           alignment: Alignment.center,
           children: [

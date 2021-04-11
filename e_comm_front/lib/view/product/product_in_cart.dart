@@ -6,8 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProductInCart extends StatelessWidget {
   final ProductModel model;
-
-  const ProductInCart({Key? key, required this.model}) : super(key: key);
+  final int quantity;
+  const ProductInCart({Key? key, required this.model, this.quantity = 1})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,9 @@ class ProductInCart extends StatelessWidget {
             size: 50,
           ),
         ),
-        title: Text(model.title),
+        title: Text(
+          quantity > 1 ? '${model.title} X $quantity' : model.title,
+        ),
         subtitle: Text('${model.price}\$'),
         trailing: IconButton(
           tooltip: 'Remove item from cart',
