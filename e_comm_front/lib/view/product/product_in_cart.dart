@@ -31,7 +31,7 @@ class ProductInCart extends StatelessWidget {
           icon: const Icon(Icons.remove_circle),
           onPressed: () {
             context.read(cartProvider).removeFromCart(model);
-            Navigator.pop(context);
+            // Navigator.pop(context);
           },
         ),
       ),

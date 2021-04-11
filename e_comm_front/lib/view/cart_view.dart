@@ -20,13 +20,16 @@ class CartView extends ConsumerWidget {
           const Divider(
             height: 20,
           ),
-          ...cartData.getCurrentCart.map(
-            (e) => ProductInCart(
-              model: e,
-            ),
-          ),
           Expanded(
-            child: Container(),
+            child: ListView(
+              children: cartData.getCurrentCart
+                  .map(
+                    (e) => ProductInCart(
+                      model: e,
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
           Container(
             alignment: Alignment.bottomCenter,
