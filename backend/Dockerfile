@@ -1,4 +1,4 @@
-FROM python:slim-buster
+FROM python:alpine
 
 # LABEL name="flaskapp"
 # LABEL maintainer="Maor Meir Hajaj"
@@ -18,11 +18,11 @@ FROM python:slim-buster
 
 COPY requirements.txt /app/requirements.txt
 WORKDIR /app
-
+ENV FLASK_APP=app
+ENV FLASK_DEBUG=1
 RUN pip3 install -r ./requirements.txt
 #COPY . .
 
-ENV FLASK_APP=app
-ENV FLASK_DEBUG=1
+
 # RUN "python run_one_time.py"
 CMD  ["flask", "run", "--host", "0.0.0.0", "--port", "5000"]
