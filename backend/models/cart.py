@@ -7,7 +7,7 @@ from datetime import datetime
 
 from models.product import Product
 
-_receipt_col: Collection = db['receipt']
+receipt_col: Collection = db['receipt']
 _cart_col: Collection = db['cart']
 
 
@@ -42,7 +42,7 @@ class Cart:
     def save_to_db(self) -> InsertManyResult:
         items_set = set(self.items)
         timestamp = datetime.now()
-        result = _receipt_col.insert_many([
+        result = receipt_col.insert_many([
             {
                 'timestamp': timestamp,
                 'item': item
