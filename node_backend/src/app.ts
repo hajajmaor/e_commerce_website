@@ -3,27 +3,22 @@ import mongoose from "mongoose";
 import config from "./config/mongose-config";
 // import bookRoutes from "./routes/book";
 import morgan from "morgan";
+import productRoutes from "./routes/product";
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect(config.url, config.options)
-    .then(() => console.log("connected to mongodb"))
-    .catch(err => console.log(err.message, err))
-    ;
+mongoose
+  .connect(config.url, config.options)
+  .then(() => console.log("connected to mongodb"))
+  .catch((err) => console.log(err.message, err));
 
 app.use(json());
-app.use(morgan('combined'))
-
+app.use(morgan("combined"));
 
 // /** Routes go here */
-// app.use('/api/books', bookRoutes);
+app.use("/api/product", productRoutes);
 
-
-
-app.get('/', (_, res) =>
-    res.send('Hello World :)')
-);
+app.get("/", (_, res) => res.send("Hello World :)"));
 
 app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`));
-
