@@ -21,6 +21,12 @@ services:
 
     command: gunicorn -b 0.0.0.0:5000 wsgi:app
 
+  # # node
+  # backend:
+  #   build: ./node_backend
+  #   ports:
+  #     - 3000:3000
+
   frontend:
     build: ./e_comm_front
     ports:
