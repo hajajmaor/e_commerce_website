@@ -1,6 +1,5 @@
 import { Document, Types } from "mongoose";
 interface IProduct extends Document {
-    id: Types.ObjectId;
     title: string;
     price: number;
     description: string;
@@ -10,7 +9,6 @@ import { Schema, model } from "mongoose";
 
 const ProductSchema: Schema = new Schema(
     {
-        id: { type: Types.ObjectId },
         title: { type: String, required: true },
         price: { type: Number, required: true, min: [0, 'Must be positive'] },
         description: { type: String, required: true },
