@@ -10,6 +10,7 @@ services:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     links:
       - backend
+      - node_backend
     # depends_on: [backend]
 
   backend:
@@ -21,11 +22,11 @@ services:
 
     command: gunicorn -b 0.0.0.0:5000 wsgi:app
 
-  # # node
-  # backend:
-  #   build: ./node_backend
-  #   ports:
-  #     - 3000:3000
+  # node
+  node_backend:
+    build: ./node_backend
+    ports:
+      - 3000:3000
 
   frontend:
     build: ./e_comm_front
@@ -33,6 +34,7 @@ services:
       - 80:8000
     links:
       - backend
+      - node_backend
 
 volumes:
   mongo-data:

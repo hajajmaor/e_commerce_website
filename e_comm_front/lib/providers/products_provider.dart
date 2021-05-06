@@ -1,11 +1,15 @@
 import 'dart:convert';
 
-import 'package:e_comm_front/constants.dart';
+import 'package:e_comm_front/main.dart';
+import 'package:e_comm_front/providers/server_provider.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:e_comm_front/models/product_model.dart';
 
 class ProductsProvider extends ChangeNotifier {
+  late Reader _reader;
+
   final List<ProductModel> _products = [];
   ProductsProvider() {
     _getData();
@@ -13,7 +17,7 @@ class ProductsProvider extends ChangeNotifier {
 
   // Future<void> addToCart(ProductModel product) async {
   //   final result = await http.post(
-  //     dServerUrl.replace(path: 'api/product/get_all'),
+  //     _reader(serverProvider).replace(path: 'api/product/get_all'),
   //     body: {'oid': product.objectId},
   //   );
   //   _getData();
@@ -21,7 +25,8 @@ class ProductsProvider extends ChangeNotifier {
 
   Future<void> _getData() async {
     _products.clear();
-    final _url = dServerUrl.replace(path: 'api/product/get_all');
+    final _url =
+        _reader(serverProvider).getUri.replace(path: 'api/product/get_all');
     final result = await http.get(
       _url,
     );
@@ -35,7 +40,8 @@ class ProductsProvider extends ChangeNotifier {
   }
 
   Future<void> removeFromStore(ProductModel product) async {
-    final _url = dServerUrl.replace(path: 'api/product/remove');
+    final _url =
+        _reader(serverProvider).getUri.replace(path: 'api/product/remove');
     await http.delete(
       _url,
       body: {'oid': product.objectId},
@@ -45,8 +51,9 @@ class ProductsProvider extends ChangeNotifier {
 
   Future<void> updateProduct(ProductModel product) async {
     final body = product.toMapAll();
-    final _url =
-        dServerUrl.replace(path: 'api/product/update', queryParameters: body);
+    final _url = _reader(serverProvider)
+        .getUri
+        .replace(path: 'api/product/update', queryParameters: body);
     final result = await http.post(
       _url,
       // headers: {"Access-Control-Allow-Origin": "*"},
@@ -59,7 +66,8 @@ class ProductsProvider extends ChangeNotifier {
 
   Future<void> createNewProduct(ProductModel product) async {
     final body = product.toMapOnlyData();
-    final _url = dServerUrl.replace(path: 'api/product/create');
+    final _url =
+        _reader(serverProvider).getUri.replace(path: 'api/product/create');
     await http.post(
       _url,
       body: body,
