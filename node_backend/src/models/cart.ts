@@ -1,26 +1,17 @@
 import { Document } from "mongoose";
-import IProduct from "./product"
+import Product from "./product";
 interface ICart extends Document {
-    item: typeof IProduct;
+    item: IProduct;
 }
 import { Schema, model } from "mongoose";
+import IProduct from "./interfaces/product-interface";
 
 const CartSchema: Schema = new Schema(
     {
-        item: { type: IProduct, required: true }
-        // title: { type: String, required: true },
-        // price: { type: Number, required: true, min: [0, 'Must be positive'] },
-        // description: { type: String, required: true },
-        // image: {
-        //     type: String,
-        //     required: function (this: IProduct) {
-        //         return this.image.match(urlRegex);
-        //     }
-        // }
+        item: { type: Product.schema, required: true }
     },
     {
         timestamps: true
     }
 );
-// ProductSchema.index({ title: 1 }, { unique: true });
 export default model<ICart>('Cart', CartSchema);

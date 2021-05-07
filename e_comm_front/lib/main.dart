@@ -16,10 +16,10 @@ void main() {
 }
 
 final cartProvider = ChangeNotifierProvider(
-  (ref) => CartProvider(),
+  (ref) => CartProvider(ref.read),
 );
 final productsProvider = ChangeNotifierProvider(
-  (ref) => ProductsProvider(),
+  (ref) => ProductsProvider(ref.read),
 );
 final serverProvider = ChangeNotifierProvider((ref) => ServerProvider());
 

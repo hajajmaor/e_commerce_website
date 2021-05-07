@@ -23,15 +23,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cached_network_image: ^3.0.0
-  cupertino_icons: ^1.0.2
-  flutter_riverpod: ^0.13.1+1
-  http: ^0.13.1
   regexpattern:
     git:
       url: https://github.com/hajajmaor/regexpattern.git
-
+  cached_network_image: ^3.0.0
+  cupertino_icons: ^1.0.2
+  flutter_riverpod: ^0.13.1+1
+  font_awesome_flutter: ^9.0.0
+  http: ^0.13.1
   riverpod: ^0.13.1
+  toggle_switch: ^0.1.9
 
 dev_dependencies:
   flutter_test:

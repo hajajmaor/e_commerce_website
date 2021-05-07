@@ -17,7 +17,7 @@ const options: ConnectOptions = {
 
 let mongo_config = {
     options: options,
-    url: `mongodb://database:27017/`
+    url: `mongodb://localhost:27017/`
 };
 
 

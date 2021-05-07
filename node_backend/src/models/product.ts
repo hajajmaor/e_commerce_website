@@ -1,11 +1,6 @@
-import { Document, Types } from "mongoose";
-interface IProduct extends Document {
-    title: string;
-    price: number;
-    description: string;
-    image: string;
-}
+import IProduct from "./interfaces/product-interface";
 import { Schema, model } from "mongoose";
+import urlRegex from "../config/regexs";
 
 const ProductSchema: Schema = new Schema(
     {

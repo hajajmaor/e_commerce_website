@@ -8,15 +8,16 @@ import 'package:http/http.dart' as http;
 import 'package:e_comm_front/models/product_model.dart';
 
 class CartProvider extends ChangeNotifier {
-  late Reader _reader;
+  final Reader _reader;
   final List<ProductModel> _products = [];
-  CartProvider() {
+  CartProvider(this._reader) {
     _getData();
     // _reader = Reader<serverProvider>;
   }
   Future<void> addToCart(ProductModel product) async {
+    final uri = _reader(serverProvider).getUri;
     final result = await http.post(
-      _reader(serverProvider).getUri.replace(path: 'api/cart/add_to_cart'),
+      uri.replace(path: 'api/cart/add_to_cart'),
       body: {'oid': product.objectId},
     );
     _getData();

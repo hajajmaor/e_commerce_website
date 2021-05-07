@@ -1,17 +1,16 @@
 import 'dart:convert';
 
 import 'package:e_comm_front/main.dart';
-import 'package:e_comm_front/providers/server_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:e_comm_front/models/product_model.dart';
 
 class ProductsProvider extends ChangeNotifier {
-  late Reader _reader;
+  final Reader _reader;
 
   final List<ProductModel> _products = [];
-  ProductsProvider() {
+  ProductsProvider(this._reader) {
     _getData();
   }
 

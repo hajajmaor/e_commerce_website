@@ -4,6 +4,8 @@ import 'package:e_comm_front/pages/admin.dart' show AdminPage;
 import 'package:e_comm_front/pages/home.dart' show HomePage;
 import 'package:e_comm_front/view/cart_icon.dart' show CartIcon;
 
+import 'toggle_backend.dart' show ToggleBackend;
+
 Tooltip _buildNavBarBtn({
   required BuildContext context,
   required String name,
@@ -32,6 +34,7 @@ AppBar getAppBar(
     AppBar(
       leading: CartIcon(),
       actions: [
+        const ToggleBackend(),
         _buildNavBarBtn(
           context: context,
           name: 'Home',

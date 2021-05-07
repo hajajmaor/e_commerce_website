@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 enum UseServer { usePython, useNode }
 const dServerName = 'localhost';
 const dPythonServerPort = 5000;
-const dNodeServerPort = 300;
+const dNodeServerPort = 3000;
 
 class ServerProvider extends ChangeNotifier {
   UseServer _server = UseServer.usePython;
@@ -21,5 +21,6 @@ class ServerProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  UseServer get getHostType => _server;
   Uri get getUri => _serverUrl;
 }
