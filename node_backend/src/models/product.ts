@@ -9,9 +9,10 @@ const ProductSchema: Schema = new Schema(
         description: { type: String, required: true },
         image: {
             type: String,
-            required: function (this: IProduct) {
-                return this.image.match(urlRegex);
-            }
+            required: true
+            // function (this: IProduct) {
+            //     return this.image.match(urlRegex);
+            // }
         }
     },
     {
@@ -19,4 +20,4 @@ const ProductSchema: Schema = new Schema(
     }
 );
 ProductSchema.index({ title: 1 }, { unique: true });
-export default model<IProduct>('Product', ProductSchema);
+export default model<IProduct>('Product', ProductSchema, 'product');

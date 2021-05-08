@@ -2,7 +2,7 @@ import { ConnectOptions } from "mongoose";
 
 
 const options: ConnectOptions = {
-    dbName: "app",
+    dbName: "e_comm",
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
