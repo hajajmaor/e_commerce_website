@@ -6,9 +6,15 @@ const dPythonServerPort = 5000;
 const dNodeServerPort = 3000;
 
 class ServerProvider extends ChangeNotifier {
-  UseServer _server = UseServer.usePython;
-  Uri _serverUrl = Uri(host: dServerName, port: dPythonServerPort);
-
+  UseServer _server = UseServer.useNode;
+  late Uri _serverUrl;
+  ServerProvider() {
+    _serverUrl = Uri(
+      host: dServerName,
+      port:
+          _server == UseServer.usePython ? dPythonServerPort : dNodeServerPort,
+    );
+  }
   void changeToPythonServer() {
     _server = UseServer.usePython;
     _serverUrl = Uri(host: dServerName, port: dPythonServerPort);

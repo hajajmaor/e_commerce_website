@@ -33,7 +33,9 @@ class ProductModel {
   }
 
   factory ProductModel.fromJsonMap(Map data) => ProductModel(
-        objectId: data['_id']["\$oid"] as String,
+        objectId: data['_id'].runtimeType != String
+            ? data['_id']["\$oid"] as String
+            : data['_id'] as String,
         description: data['description'] as String,
         imageUrl: data.containsKey('image_url')
             ? data['image_url'] as String

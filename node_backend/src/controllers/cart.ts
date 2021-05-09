@@ -30,8 +30,8 @@ const deleteOne = (req: Request, res: Response, _: NextFunction) => {
 };
 
 const addToCart = (req: Request, res: Response, _: NextFunction) => {
-    let { oid } = req.body;
-    Product.findOne({ _id: mongoose.Types.ObjectId(oid) })
+    // let { oid } = req.body;
+    Product.findOne({ _id: req.body.oid })
         .then((prod) => {
             const item = new Cart({
                 item: prod

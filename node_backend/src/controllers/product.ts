@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Product from "../models/product";
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 const getall = (_: Request, res: Response, __: NextFunction) => {
     Product.find()
         .exec()
@@ -16,7 +16,7 @@ const getall = (_: Request, res: Response, __: NextFunction) => {
 
 const deleteOne = (req: Request, res: Response, _: NextFunction) => {
     Product.deleteOne({
-        _id: mongoose.Types.ObjectId(req.body.oid),
+        _id: req.body.oid,
     })
         .then((_) => res.status(200))
         .catch((err) => {
@@ -30,7 +30,7 @@ const deleteOne = (req: Request, res: Response, _: NextFunction) => {
 
 const updateOne = (req: Request, res: Response, _: NextFunction) => {
     Product.updateOne({
-        _id: mongoose.Types.ObjectId(req.body.oid),
+        _id: req.body.oid,
     })
         .then((_) => res.status(200))
         .catch((err) => {
@@ -67,7 +67,7 @@ const createNewProduct = (req: Request, res: Response, _: NextFunction) => {
 };
 
 const getOne = (req: Request, res: Response, _: NextFunction) => {
-    Product.findOne({ _id: mongoose.Types.ObjectId(req.body.oid) })
+    Product.findOne({ _id: req.body.oid })
         .then((prod) => res.status(200).json(prod))
         .catch((err) => {
             console.log(err);
