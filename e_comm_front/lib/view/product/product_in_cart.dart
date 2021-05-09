@@ -18,7 +18,7 @@ class ProductInCart extends StatelessWidget {
         tileColor: Colors.blueGrey[300],
         leading: CachedNetworkImage(
           fit: BoxFit.fill,
-          imageUrl: model.imageUrl,
+          imageUrl: model.image ?? '',
           placeholder: (_, __) => const CircularProgressIndicator(),
           errorWidget: (_, __, ___) => const FlutterLogo(
             style: FlutterLogoStyle.stacked,

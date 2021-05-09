@@ -26,7 +26,7 @@ class ProductView extends StatelessWidget {
               child: CachedNetworkImage(
                 height: 150,
                 fit: BoxFit.fill,
-                imageUrl: model.imageUrl,
+                imageUrl: model.image ?? '',
                 placeholder: (_, __) => const CircularProgressIndicator(),
                 errorWidget: (_, __, ___) => const FlutterLogo(
                   style: FlutterLogoStyle.stacked,

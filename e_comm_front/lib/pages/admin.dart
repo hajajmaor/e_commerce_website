@@ -71,7 +71,7 @@ class AdminPage extends ConsumerWidget {
                         verticalAlignment: TableCellVerticalAlignment.middle,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(e.imageUrl),
+                          child: Text(e.image ?? 'no image'),
                         ),
                       ),
                       TableCell(

@@ -39,7 +39,7 @@ class _ProductEditorState extends State<ProductEditor> {
       text: widget.isNew ? "" : widget.before!.description,
     );
     _imageController = TextEditingController(
-      text: widget.isNew ? "" : widget.before!.imageUrl,
+      text: widget.isNew ? "" : widget.before?.image ?? "",
     );
   }
 
@@ -146,7 +146,7 @@ class _ProductEditorState extends State<ProductEditor> {
                         if (widget.isNew == false) {
                           final _newProduct = widget.before!.copyWith(
                             description: _descriptionController.text,
-                            imageUrl: _imageController.text,
+                            image: _imageController.text,
                             price: double.tryParse(_priceController.text),
                             title: _titleController.text,
                           );
@@ -165,7 +165,7 @@ class _ProductEditorState extends State<ProductEditor> {
                           final newProduct = ProductModel(
                             description: _descriptionController.text,
                             title: _titleController.text,
-                            imageUrl: _imageController.text,
+                            image: _imageController.text,
                             price: double.parse(_priceController.text),
                           );
                           try {

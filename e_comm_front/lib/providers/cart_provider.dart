@@ -32,7 +32,10 @@ class CartProvider extends ChangeNotifier {
     );
     final data = jsonDecode(result.body);
     for (final item in data) {
-      final temp = Map<String, dynamic>.from(item as Map);
+      var temp = Map<String, dynamic>.from(item as Map);
+      if (temp.containsKey("item")) {
+        temp = Map<String, dynamic>.from(temp['item'] as Map);
+      }
       // temp['_id'] = Map<String, dynamic>.from(temp['_id'] as Map);
       _products.add(ProductModel.fromJsonMap(temp));
     }

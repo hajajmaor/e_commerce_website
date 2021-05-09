@@ -4,14 +4,14 @@ class ProductModel {
   final String title;
   final double price;
   final String description;
-  final String imageUrl;
+  final String? image;
   final String? objectId;
 
   ProductModel({
     required this.title,
     required this.price,
     required this.description,
-    required this.imageUrl,
+    this.image,
     this.objectId,
   });
 
@@ -37,9 +37,7 @@ class ProductModel {
             ? data['_id']["\$oid"] as String
             : data['_id'] as String,
         description: data['description'] as String,
-        imageUrl: data.containsKey('image_url')
-            ? data['image_url'] as String
-            : data['image'] as String,
+        image: data.containsKey('image') ? data['image_url'] as String : null,
         price: data['price'].runtimeType == String
             ? double.parse(data['price'] as String)
             : data['price'] as double,
@@ -50,14 +48,14 @@ class ProductModel {
     String? title,
     double? price,
     String? description,
-    String? imageUrl,
+    String? image,
     String? objectId,
   }) {
     return ProductModel(
       title: title ?? this.title,
       price: price ?? this.price,
       description: description ?? this.description,
-      imageUrl: imageUrl ?? this.imageUrl,
+      image: image ?? this.image,
       objectId: objectId ?? this.objectId,
     );
   }
@@ -67,7 +65,7 @@ class ProductModel {
       'title': title,
       'price': price,
       'description': description,
-      'imageUrl': imageUrl,
+      'image': image,
       // 'objectId': objectId,
     };
   }
@@ -77,7 +75,7 @@ class ProductModel {
       'title': title,
       'price': price.toString(),
       'description': description,
-      'imageUrl': imageUrl,
+      'image': image,
       'oid': objectId,
     };
   }
@@ -87,7 +85,7 @@ class ProductModel {
       title: map['title'] as String,
       price: map['price'] as double,
       description: map['description'] as String,
-      imageUrl: map['imageUrl'] as String,
+      image: map['image'] as String,
       objectId: map['objectId'] as String,
     );
   }
@@ -96,7 +94,7 @@ class ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(title: $title, price: $price, description: $description, imageUrl: $imageUrl, objectId: $objectId)';
+    return 'ProductModel(title: $title, price: $price, description: $description, image: $image, objectId: $objectId)';
   }
 
   @override
@@ -107,7 +105,7 @@ class ProductModel {
         other.title == title &&
         other.price == price &&
         other.description == description &&
-        other.imageUrl == imageUrl &&
+        other.image == image &&
         other.objectId == objectId;
   }
 
@@ -116,7 +114,7 @@ class ProductModel {
     return title.hashCode ^
         price.hashCode ^
         description.hashCode ^
-        imageUrl.hashCode ^
+        image.hashCode ^
         objectId.hashCode;
   }
 }
