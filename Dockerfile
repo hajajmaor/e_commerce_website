@@ -10,4 +10,4 @@ ENV PATH="/flutter/bin:${PATH}"
 RUN flutter doctor
 EXPOSE 80
 CMD ["bash"]
-# docker build -t flutter_image:latest .
+# docker build -t flutter_image:latest . --load

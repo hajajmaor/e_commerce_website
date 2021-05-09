@@ -1,5 +1,5 @@
 # FROM cirrusci/flutter:stable as builder
-FROM flutter_image:0.1.4 as builder
+FROM flutter_image as builder
 COPY . /app
 WORKDIR /app
 # USER user
