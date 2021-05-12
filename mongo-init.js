@@ -26,7 +26,7 @@ db.product.insertMany([
         "image": "https://www.foodbusinessnews.net/ext/resources/2020/4/WoodenSpoonSugar_Lead.jpg"
     },
     {
-        "title": "phone charget",
+        "title": "phone charger",
         "price": "30",
         "description": "5V 2A charger",
         "image": "https://www.maxbhi.com/images/detailed/31/charger-for-blu-studio-mini-lte-usb-mobile-phone-wall-charger-maxbhi-5-3-1.jpg"
