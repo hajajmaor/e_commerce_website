@@ -40,3 +40,4 @@ volumes:
   mongo-data:
   mongo-configdb:
 # docker-compose up --build
+# docker compose up -d backend database

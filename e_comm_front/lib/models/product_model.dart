@@ -37,7 +37,7 @@ class ProductModel {
             ? data['_id']["\$oid"] as String
             : data['_id'] as String,
         description: data['description'] as String,
-        image: data.containsKey('image') ? data['image_url'] as String : null,
+        image: data.containsKey('image') ? data['image'] as String : null,
         price: data['price'].runtimeType == String
             ? double.parse(data['price'] as String)
             : data['price'] as double,
