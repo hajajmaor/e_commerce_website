@@ -29,9 +29,19 @@ class CartView extends ConsumerWidget {
       width: 300,
       child: Column(
         children: [
-          Text(
-            'Cart',
-            style: Theme.of(context).textTheme.headline2,
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Cart',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+              ),
+              IconButton(
+                  icon: const Icon(Icons.refresh_outlined),
+                  onPressed: () => cartData.refresh())
+            ],
           ),
           const Divider(
             height: 20,

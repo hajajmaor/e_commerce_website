@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Cart from "../models/cart";
 import Product from "../models/product";
-import mongoose from "mongoose";
+import Receipt from "../models/receipt";
 const getall = (_: Request, res: Response, __: NextFunction) => {
   Cart.find()
     .exec()
@@ -59,4 +59,25 @@ const addToCart = (req: Request, res: Response) => {
       })
     );
 };
-export default { getall, deleteOne, addToCart };
+
+const buyCart = async (_: Request, res: Response) => {
+  const timeNow = Date.now();
+  const items = await Cart.find().exec();
+  const cartItems = items.map((item) => item.item);
+  const itemsToInsert = cartItems.map(
+    (item) => new Receipt({ timestamp: timeNow, item: item })
+  );
+  Receipt.insertMany(itemsToInsert, { ordered: false })
+    .then(async (_) => {
+      await Cart.deleteMany({});
+      res.status(200).json();
+    })
+    .catch((err) =>
+      res.status(500).json({
+        message: err.message,
+        err,
+      })
+    );
+};
+
+export default { getall, deleteOne, addToCart, buyCart };
