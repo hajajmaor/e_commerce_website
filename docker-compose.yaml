@@ -8,10 +8,6 @@ services:
       - mongo-data:/data/db
       - mongo-configdb:/data/configdb
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-    links:
-      - backend
-      - node_backend
-    # depends_on: [backend]
 
   backend:
     build: ./backend
@@ -19,7 +15,7 @@ services:
       - 5000:5000
     volumes:
       - ./backend:/app
-
+    depends_on: [database]
     command: gunicorn -b 0.0.0.0:5000 wsgi:app
 
   # node
@@ -27,15 +23,13 @@ services:
     build: ./node_backend
     ports:
       - 3000:3000
+    depends_on: [database]
 
   frontend:
     build: ./e_comm_front
     ports:
       - 80:8000
-    links:
-      - backend
-      - node_backend
-
+    depends_on: [backend, node_backend]
 volumes:
   mongo-data:
   mongo-configdb:

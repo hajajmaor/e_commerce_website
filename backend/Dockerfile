@@ -20,7 +20,7 @@ COPY requirements.txt /app/requirements.txt
 WORKDIR /app
 ENV FLASK_APP=app
 ENV FLASK_DEBUG=1
-RUN pip3 install -r ./requirements.txt
+RUN pip install -r ./requirements.txt
 #COPY . .
 
 
