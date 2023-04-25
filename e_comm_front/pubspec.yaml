@@ -30,7 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_riverpod: ^0.13.1+1
   font_awesome_flutter: ^9.0.0
-  http: ^0.13.1
+  http: ^0.13.5
   riverpod: ^0.13.1
   toggle_switch: ^0.1.9
 
